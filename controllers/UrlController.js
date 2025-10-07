@@ -11,7 +11,12 @@ const createShortUrl = async (req, res) => {
     visithistory: [],
   });
 
-  return res.status(201).send({ status: "OK", shortId: shortId });
+  // return res.status(201).send({ status: "OK", shortId: shortId });
+  res.render("shorten_url", {
+    pageTitle: "Create Shorten Url",
+    isCreated: true,
+    shortId,
+  });
 };
 
 const getShortUrl = async (req, res) => {
@@ -21,7 +26,7 @@ const getShortUrl = async (req, res) => {
 
   if (!url) return res.status(404).end("Not found");
 
-  res.status(200).send({ status: "OK", redirectURL: url.redirectURL });
+  res.redirect(url.redirectURL);
 };
 
 const analyticsShortUrl = async (req, res) => {

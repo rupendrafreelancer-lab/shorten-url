@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <%- include('common/head') %>
+  <body>
+    <%- include('common/header') %>
+    <main>
+      <h2>Shorten Url</h2>
+      <br />
+      <% if(isCreated) { %>
+      <p>Shorten url created with "<%= shortId %>"</p>
+      <% } else { %>
+      <form method="POST" action="/url">
+        <label for="redirectURL">
+          <span>Enter your original url</span>
+          <input id="redirectURL" type="text" name="url" placeholder="http://example.com" />
+        </label>
+        <button type="submit">Submit</button>
+      </form>
+      <% } %>
+    </main>
+    <%- include('common/footer') %>
+  </body>
+</html>
