@@ -2,20 +2,30 @@ const shortid = require("shortid");
 const UrlModel = require("../models/UrlModel");
 
 const createShortUrl = async (req, res) => {
-  const body = req.body;
+  let isCreated,
+    shortId = null;
 
-  const shortId = shortid.generate(8);
-  const url = await UrlModel.create({
-    shortId: shortId,
-    redirectURL: body.url,
-    visithistory: [],
-  });
+  const urls = await UrlModel.find({});
 
-  // return res.status(201).send({ status: "OK", shortId: shortId });
+  if (req.method === "GET") {
+    isCreated = false;
+  } else {
+    isCreated = true;
+    const body = req.body;
+
+    shortId = shortid.generate(8);
+    const url = await UrlModel.create({
+      shortId: shortId,
+      redirectURL: body.url,
+      visithistory: [],
+    });
+  }
+
   res.render("shorten_url", {
     pageTitle: "Create Shorten Url",
-    isCreated: true,
+    isCreated: isCreated,
     shortId,
+    urls,
   });
 };
 

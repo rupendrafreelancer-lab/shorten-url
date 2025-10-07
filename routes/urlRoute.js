@@ -3,6 +3,8 @@ const { analyticsShortUrl, getShortUrl, createShortUrl } = require("../controlle
 
 const urlRouter = express.Router();
 
+urlRouter.route("/").get(createShortUrl);
+
 urlRouter.route("/").post(createShortUrl);
 
 urlRouter.route("/:id").get(getShortUrl);

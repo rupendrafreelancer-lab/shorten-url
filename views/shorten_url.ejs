@@ -16,6 +16,25 @@
         </label>
         <button type="submit">Submit</button>
       </form>
+      <% } %> <% if(urls) { %>
+      <table>
+        <thead>
+          <th>S.No.</th>
+          <th>ShortId</th>
+          <th>Redirect Url</th>
+          <th>Clicks</th>
+        </thead>
+        <tbody>
+          <% urls.forEach((url, index) => { %>
+          <tr>
+            <td><%- index %></td>
+            <td><%- url.shortId %></td>
+            <td><%- url.redirectURL %></td>
+            <td><%- url.visithistory.length %></td>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
       <% } %>
     </main>
     <%- include('common/footer') %>
